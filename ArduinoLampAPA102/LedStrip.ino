@@ -64,7 +64,7 @@ void updateColors(boolean cycleColors) {
 /**
  * sets LED strip to fixed color code
  */
-void setColorCode(char* color) {
+void setColorCode(const char* color) {
   playerOn = false;
   changeBrightness(BRIGHTNESS_MAX);
   colorRed = s2r(color);
@@ -123,14 +123,13 @@ void changeBrightness(float stepSize) {
   brightness = constrain(brightness + stepSize, BRIGHTNESS_MIN, BRIGHTNESS_MAX);
 }
 
-byte s2r(char* s) { return s2v(s, 0); }
-byte s2g(char* s) { return s2v(s, 2); }
-byte s2b(char* s) { return s2v(s, 4); }
+byte s2r(const char* s) { return s2v(s, 0); }
+byte s2g(const char* s) { return s2v(s, 2); }
+byte s2b(const char* s) { return s2v(s, 4); }
 
-byte s2v(char* s, int offset) {
+byte s2v(const char* s, int offset) {
   char cBuf[3];
   memcpy(cBuf, &s[offset], 2);
   cBuf[2] = '\0';
   return strtoul(cBuf, 0, 16);
 }
-

@@ -1,9 +1,9 @@
-#include <APA102.h>
 #include <TimerOne.h>
+#include <APA102.h>
 
 //--- debug settings ---//
 #define LED_DEBUG false
-#define IR_DEBUG false
+#define IR_DEBUG true
 
 //--- LED pixel constants ---//
 #define PIXELS 120
@@ -25,18 +25,6 @@
 
 #define TIMER_DEBUG 10000
 #define TIMER_PRODUCTION 1200000
-
-//--- IR control constants ---//
-#define PORT_IR PIND
-#define PIN_IR 2
-
-// the maximum pulse we'll listen for - 65 milliseconds is a long time
-#define MAXPULSE 2500
-
-// what our timing resolution should be, larger is better
-// as its more 'precise' - but too large and you wont get
-// accurate timing
-#define RESOLUTION 20
 
 //--- LED variables ---//
 int currentColor;
@@ -90,4 +78,3 @@ void setup() {
 void loop() {
   loopIr();
 }
-

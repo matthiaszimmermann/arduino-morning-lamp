@@ -2,7 +2,7 @@
 /**
  * returns the preset color for the provided index
  */
-char* presetColor(int index) {
+const char* presetColor(int index) {
   switch(index) {
     case 0:
       return "34db7a";
@@ -24,7 +24,7 @@ char* presetColor(int index) {
 /**
  * returns the cycle color for the provided index
  */
-char* color(int index) {
+const char* color(int index) {
   if(LED_DEBUG) { return colorDebug(index); }
   else          { return colorMorning(index); }
 }
@@ -40,10 +40,10 @@ int colors() {
 /**
  * returns the color for the provided index (production case)
  */
-char* colorMorning(int index) {
+const char* colorMorning(int index) {
   switch(index) {
     case 0:
-      return "020000";
+      return "01000a";
     case 1:
       return "01010a";
     case 2:
@@ -57,7 +57,7 @@ char* colorMorning(int index) {
     case 6:
       return "df3a20";
     case 7:
-      return "eac010";
+      return "eac020";
     default:
       return "000000";
   }
@@ -66,7 +66,7 @@ char* colorMorning(int index) {
 /**
  * returns the color for the provided index (debugging case)
  */
-char* colorDebug(int index) {
+const char* colorDebug(int index) {
   switch(index) {
     case 0:
       return "020000";
