@@ -6,7 +6,10 @@
 #define IR_DEBUG true
 
 //--- LED pixel constants ---//
-#define PIXELS 120
+#define PIXELS 120 // number of available pixels in led strip
+#define PIXEL_STEPS 4 // number of pixels updated at same time
+#define STEPS 5 // number of in between steps for morning colors
+
 #define PIN_LED_STRIP_DATA 11
 #define PIN_LED_STRIP_CLOCK 12
 
@@ -20,11 +23,7 @@
 #define BRIGHTNESS_STEP 0.2
 #define GLOBAL_DIM 2.0
 
-#define STEPS 3
-#define PIXEL_STEPS 4
-
-#define TIMER_DEBUG 10000
-#define TIMER_PRODUCTION 1200000
+#define TIMER_INTERRUPT 10000 // use 10000 for debug, and 1200000 for production
 
 //--- LED variables ---//
 int currentColor;
@@ -70,6 +69,8 @@ String codeColor6       = "0100100010110111>";
 // String codeSkipForward  = "0110000010011111>";
 // String codeSkipBackward = "1110000000011111>";
 
+int findColor = 0;
+
 void setup() {
   Serial.begin(9600);
   setupLedStrip();
@@ -77,4 +78,29 @@ void setup() {
 
 void loop() {
   loopIr();
+  //experimentWithColors();
+}
+
+// only needed to experiment with morning colors
+void experimentWithColors() {
+  setColorCode(loopFindGoodColors(findColor++));
+  updateLedStrip();
+  delay(1000);
+}
+
+const char* loopFindGoodColors(int index) {
+  switch(index % 5) {
+    case 0:
+      return "000000"; // schwarz
+    case 1:
+      return "000018"; // dunkelblau
+    case 2:
+      return "1e0070"; // violett
+    case 3:
+      return "a02000"; // orange
+    case 4:
+      return "ff6600"; // gelborange
+    default:
+      return "000000";
+  }
 }

@@ -34,30 +34,24 @@ const char* color(int index) {
  */
 int colors() {
   if(LED_DEBUG) { return 4; }
-  else          { return 8; }
+  else          { return 5; }
 }
 
 /**
  * returns the color for the provided index (production case)
  */
 const char* colorMorning(int index) {
-  switch(index) {
+  switch(index % 5) {
     case 0:
-      return "01000a";
+      return "000000"; // schwarz
     case 1:
-      return "01010a";
+      return "000018"; // dunkelblau
     case 2:
-      return "02040a";
+      return "1e0070"; // violett
     case 3:
-      return "070719";
+      return "a02000"; // orange
     case 4:
-      return "0b0b61";
-    case 5:
-      return "612b2b";
-    case 6:
-      return "df3a20";
-    case 7:
-      return "eac020";
+      return "ff6600"; // gelborange
     default:
       return "000000";
   }

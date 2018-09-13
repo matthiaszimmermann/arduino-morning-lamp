@@ -13,8 +13,7 @@ void setupLedStrip() {
 }
 
 void attachTimerInterrupt() {
-  if(LED_DEBUG) { Timer1.initialize(TIMER_DEBUG); }
-  else          { Timer1.initialize(TIMER_PRODUCTION); }
+  Timer1.initialize(TIMER_INTERRUPT);
 
   // link timer with callback function
   Timer1.attachInterrupt(play);
@@ -52,7 +51,11 @@ void updateColors(boolean cycleColors) {
     else {
       currentStep = 0;
       currentColor = nextColor;
-      nextColor = (currentColor + 1) % colors();
+      nextColor = currentColor + 1;
+
+      if(nextColor > colors() - 1) {
+        nextColor = colors() - 1;
+      }
     }
   }
   
